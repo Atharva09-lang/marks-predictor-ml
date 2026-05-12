@@ -21,11 +21,13 @@ new_data = pd.DataFrame({
     "sleep_hours": [sleep_hours]
 })
 
-# Predict
 prediction = model.predict(new_data)
 
+predicted_marks = round(float(prediction[0]), 2)
+
+predicted_marks = max(0, min(100, predicted_marks))
+
 print(json.dumps({
-    "predicted_marks": round(
-        float(prediction[0]), 2
-    )
+    "predicted_marks": predicted_marks
 }))
+
